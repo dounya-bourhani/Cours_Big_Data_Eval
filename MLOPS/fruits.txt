@@ -1,0 +1,32 @@
+import streamlit as st
+import requests
+
+
+# Streamlit UI
+st.title("Fruit Adder App")
+
+# Text input to enter a fruit
+fruit = st.text_input("Enter a fruit:")
+button_clicked = st.button("Add fruit")
+
+#if st.button("Get List of Fruits"):
+    # Make a request to the FastAPI server to get the list of fruits
+#    response = requests.get("http://server:8000/list")
+    # Display the list of fruits
+ #   st.write("List of Fruits:")
+    #st.write(response.json())
+
+
+# Button to add a fruit
+if button_clicked :
+    st.write("It worked")
+    st.balloons()
+    if fruit:
+        # Make a request to the FastAPI server to add the fruit
+        response = requests.get(f"http://server:8000/add/{fruit}")
+
+        # Display the server's response
+        st.success(f"Fruit '{fruit}' added ! Server response: {response.text}")
+    else:
+        st.warning("Please enter a fruit before clicking the button.")
+
